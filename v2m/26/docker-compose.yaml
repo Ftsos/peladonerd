@@ -1,16 +1,7 @@
 version: '3'
 
 services:
-  plex:
-    image: jaymoulin/plex:1.18.2
-    expose:
-      - 32400
-      - 33400
-    network_mode: "host"
-    volumes:
-      - /mnt/gdrive/movies:/movies
-    depends_on:
-      - rclone-mount
+ 
 
   rclone-mount:
     image: pablokbs/rclone-mount:armhf
@@ -23,7 +14,7 @@ services:
       - 'apparmor:unconfined'
     volumes:
       - '/var/run/docker.sock:/tmp/docker.sock:ro'
-      - '/home/pi/.config/rclone:/config'
+      - '/~.config/rclone:/config'
       - '/mnt/gdrive:/mnt/mediaefs:shared'
     logging:
       options:
